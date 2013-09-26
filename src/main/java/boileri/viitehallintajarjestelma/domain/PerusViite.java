@@ -10,23 +10,22 @@ import java.util.ArrayList;
  *
  * @author Outt
  */
-public class PerusViite extends Viite{
-    private String a;
-    private String b;
-    private String c;
-    private String d;
-    
-    public PerusViite(ArrayList<String> A) {
-        this.a = A.get(0);
-        this.b = A.get(1);
-        this.c = A.get(2);
-        this.d = A.get(3);             
+public class PerusViite extends Viite {
+
+    private ArrayList<String> kentat = new ArrayList(4);
+    private ArrayList<String> sisalto;
+    {
+        kentat.add("Author: ");
+        kentat.add("Title: ");
+        kentat.add("Book title: ");
+        kentat.add("Year: ");
+    }
+
+    public PerusViite(ArrayList<String> sisalto) {
+        this.sisalto = sisalto;  
     }
     
-    @Override
-    public String toString() {
-        String x = "Aaa:"+a+"\nBee"+b+"\nCee"+c+"\nDee"+d;
-        return x;
+    public ArrayList<String> getKentat() {
+        return kentat;
     }
-    
 }
