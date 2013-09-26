@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Outt
  */
 public class InProceedingsViite extends Viite{
+    
     private String a;
     private String b;
     private String c;

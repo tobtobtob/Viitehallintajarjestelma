@@ -4,7 +4,7 @@
  */
 package boileri.io;
 
-//import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import java.io.ByteArrayOutputStream;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ViiteTextIOTest {
     ViiteTextIO io;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final ByteArrayOutputStream outputErr = new ByteArrayOutputStream();
-//    private final InputStream input = new ByteInputStream();
+    private final InputStream input = new ByteInputStream();
 
     @Before
     public void setUp() {
