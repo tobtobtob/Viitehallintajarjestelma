@@ -21,6 +21,12 @@ public class Viite {
     }
    
    public static Viite luoViite(List<String> pakolliset, String tyyppi){
+       
+       for (String string : pakolliset) {
+           if(string.equals("")){
+               return null;
+           }
+       }
        if(tyyppi.equals("inproceedings")){
            return new InProceedingsViite(pakolliset);
        }

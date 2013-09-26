@@ -29,6 +29,12 @@ public class InMemoryDaoTest {
         List<Viite> viitteet = dao.haeKaikki();
         assertEquals(0, viitteet.size());
     }
+    
+     @Test
+     public void palauttaaFalseJosTallennetaanTyhjaaViitetta(){
+         assertEquals(false, dao.tallennaViite(null));
+     }
+     
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
