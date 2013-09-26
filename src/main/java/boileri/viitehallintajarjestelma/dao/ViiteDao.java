@@ -8,7 +8,7 @@ public interface ViiteDao {
     
     public List<Viite> haeKaikki();
     
-    public void tallennaViite(Viite viite);
+    public boolean tallennaViite(Viite viite);
     
     public void poistaViite(Viite viite);
 }

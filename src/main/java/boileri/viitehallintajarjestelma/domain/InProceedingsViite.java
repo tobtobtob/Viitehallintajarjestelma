@@ -5,6 +5,7 @@
 package boileri.viitehallintajarjestelma.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,8 +14,8 @@ import java.util.ArrayList;
 
 public class InProceedingsViite extends Viite{
 
-    private ArrayList<String> kentat = new ArrayList(4);
-    private ArrayList<String> sisalto;
+    private List<String> kentat = new ArrayList(4);
+    private List<String> sisalto;
     {
         kentat.add("Author: ");
         kentat.add("Title: ");
@@ -22,11 +23,11 @@ public class InProceedingsViite extends Viite{
         kentat.add("Year: ");
   }
 
-    public InProceedingsViite(ArrayList<String> sisalto) {
+    public InProceedingsViite(List<String> sisalto) {
         this.sisalto = sisalto;  
     }
     
-    public ArrayList<String> getKentat() {
+    public List<String> getKentat() {
         return kentat;
     }
 }

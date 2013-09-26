@@ -24,8 +24,12 @@ public class InMemoryDao implements ViiteDao {
     }
 
     @Override
-    public void tallennaViite(Viite viite) {
+    public boolean tallennaViite(Viite viite) {
+        if(viite == null){
+            return false;
+        }
         viitteet.add(viite);
+        return true;
     }
 
     @Override

@@ -8,7 +8,10 @@ import boileri.io.ViiteIO;
 import boileri.io.ViiteTextIO;
 import boileri.viitehallintajarjestelma.dao.InMemoryDao;
 import boileri.viitehallintajarjestelma.dao.ViiteDao;
+import boileri.viitehallintajarjestelma.domain.Viite;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 //import boileri.viitehallintajarjestelma.domain.PerusViite;
 //import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
 //import java.util.ArrayList;
@@ -62,6 +65,25 @@ public class Viitehallintajarjestelma {
     }
     public void uusiViite(){
         
+        io.print("Anna viitteen tyyppi:");
+        String tyyppi = io.readLine(">");
+        List<String> kentat = Viite.getPakollisetKentat(tyyppi);
+        if(kentat == null){
+            io.print("Virheellinen tyyppi");
+            return;
+        }
+        List<String> syotetytKentat = new ArrayList<String>();
+        for (String kentta : kentat) {
+            io.print("syötä kenttä \""+kentta+"\":");
+            syotetytKentat.add(io.readLine(">"));
+        }
+        Viite uusi = Viite.luoViite(syotetytKentat, tyyppi);
+        if(dao.tallennaViite(uusi)){
+            io.print("Viite tallennettu!");
+        }
+        else{
+            io.print("Tallennus epäonnistui");
+        }
     }
     public void listaaViitteet(){
         
