@@ -18,26 +18,25 @@ public class ViiteTextIOTest {
 
     @Before
     public void setUp() {
-        io = new ViiteTextIO();
+        io = new ViiteTextIO(System.in);
     }
 
     @Test
     public void printTulostaaOikein() {
+        System.setIn(null);
     }
 
     @Test
     public void readIntPalauttaaOikeanLuvun() {
-
+        
     }
 
     @Test
     public void readIntPalauttaaMiinusYksiKunNegLuku() {
-
     }
 
     @Test
     public void readIntePalauttaaMiinusYksiKunEiLuku() {
-
     }
 
     @Test

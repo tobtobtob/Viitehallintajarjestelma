@@ -1,17 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package boileri.io;
 
 /**
  * @author alpa
  */
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class ViiteTextIO implements ViiteIO {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public ViiteTextIO(InputStream d) {
+        scanner = new Scanner(d);
+    }
 
     // Tulostaa annetun syötteen
     @Override
@@ -19,7 +20,7 @@ public class ViiteTextIO implements ViiteIO {
         System.out.println(toPrint);
     }
 
-    // Kuuntelee näppäimistöä ja palauttaa annetun kokonaisluvun
+    // Kuuntelee input-syötettä ja palauttaa annetun kokonaisluvun
     @Override
     public int readInt(String prompt) {
         System.out.print(prompt + " ");
@@ -34,7 +35,7 @@ public class ViiteTextIO implements ViiteIO {
         }
     }
 
-    // Kuuntelee näppäimistöä ja palauttaa annetun merkkijonon
+    // Kuuntelee input-syötettä ja palauttaa annetun merkkijonon
     @Override
     public String readLine(String prompt) {
         System.out.print(prompt + " ");
