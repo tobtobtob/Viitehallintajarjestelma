@@ -10,7 +10,8 @@ import java.util.ArrayList;
  *
  * @author Outt
  */
-public class PerusViite extends Viite {
+
+public class InProceedingsViite extends Viite{
 
     private ArrayList<String> kentat = new ArrayList(4);
     private ArrayList<String> sisalto;
@@ -19,9 +20,9 @@ public class PerusViite extends Viite {
         kentat.add("Title: ");
         kentat.add("Book title: ");
         kentat.add("Year: ");
-    }
+  }
 
-    public PerusViite(ArrayList<String> sisalto) {
+    public InProceedingsViite(ArrayList<String> sisalto) {
         this.sisalto = sisalto;  
     }
     

@@ -1,5 +1,5 @@
 
-package boileri.viitehallintajarjestelma.Dao;
+package boileri.viitehallintajarjestelma.dao;
 
 import boileri.viitehallintajarjestelma.domain.Viite;
 import java.util.List;

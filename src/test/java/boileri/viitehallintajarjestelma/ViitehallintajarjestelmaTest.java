@@ -16,9 +16,5 @@ public class ViitehallintajarjestelmaTest {
     public void setUp() {
     }
     
-    @Test
-    public void testimetodiJenkinsille(){
-        assertEquals(9, Viitehallintajarjestelma.testiMetodi(7));
-    }
     
 }

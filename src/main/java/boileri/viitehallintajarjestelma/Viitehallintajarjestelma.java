@@ -6,6 +6,9 @@ package boileri.viitehallintajarjestelma;
  */
 import boileri.io.ViiteIO;
 import boileri.io.ViiteTextIO;
+import boileri.viitehallintajarjestelma.dao.InMemoryDao;
+import boileri.viitehallintajarjestelma.dao.ViiteDao;
+import java.io.InputStream;
 //import boileri.viitehallintajarjestelma.domain.PerusViite;
 //import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
 //import java.util.ArrayList;
@@ -13,13 +16,15 @@ import boileri.io.ViiteTextIO;
 public class Viitehallintajarjestelma {
 
     public ViiteIO io;
+    public ViiteDao dao;
 
-    public Viitehallintajarjestelma(ViiteIO i) {
-        io = i;
+    public Viitehallintajarjestelma(InputStream d) {
+        io = new ViiteTextIO(d);
+        dao = new InMemoryDao();
     }
-    
+
     public static void main(String[] args) {
- 
+
 //        Testailua...        
 //        ArrayList<String> b =new ArrayList();
 //        b.add("a");
@@ -30,24 +35,36 @@ public class Viitehallintajarjestelma {
 //        InMemoryDao y = new InMemoryDao();
 //        y.tallennaViite(x);
 //        System.out.println(x);
-        Viitehallintajarjestelma viitejar = new Viitehallintajarjestelma(new ViiteTextIO());
+        Viitehallintajarjestelma viitejar = new Viitehallintajarjestelma(System.in);
         viitejar.run();
     }
 
     public void run() {
         String command;
         while (true) {
+            io.print("Syötä komento:");
+            io.print("Tyhjä syöte sammuttaa ohjelman\n");
             command = io.readLine(">");
-
-            // Kun käyttäjä antaa tyhjän syötteen
-            if (command.isEmpty()) {
+            
+            if (command.equals("listaa")){
+                listaaViitteet();
+            }
+            else if (command.equals("uusi")){
+                uusiViite();
+            }
+            else if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
+            } else {
+                io.print("Tunnistamaton komento.\n");
             }
         }
     }
-
-    public static int testiMetodi(int numero) {
-        return numero + 2;
+    public void uusiViite(){
+        
     }
+    public void listaaViitteet(){
+        
+    }
+
 }
