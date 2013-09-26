@@ -6,6 +6,8 @@ package boileri.viitehallintajarjestelma;
  */
 import boileri.io.ViiteIO;
 import boileri.io.ViiteTextIO;
+import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
+import boileri.viitehallintajarjestelma.Dao.ViiteDao;
 import java.io.InputStream;
 //import boileri.viitehallintajarjestelma.domain.PerusViite;
 //import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
@@ -14,9 +16,11 @@ import java.io.InputStream;
 public class Viitehallintajarjestelma {
 
     public ViiteIO io;
+    public ViiteDao dao;
 
     public Viitehallintajarjestelma(InputStream d) {
         io = new ViiteTextIO(d);
+        dao = new InMemoryDao();
     }
 
     public static void main(String[] args) {
@@ -41,9 +45,14 @@ public class Viitehallintajarjestelma {
             io.print("Syötä komento:");
             io.print("Tyhjä syöte sammuttaa ohjelman\n");
             command = io.readLine(">");
-
-            // Kun käyttäjä antaa tyhjän syötteen
-            if (command.isEmpty()) {
+            
+            if (command.equals("listaa")){
+                listaaViitteet();
+            }
+            if (command.equals("uusi")){
+                uusiViite();
+            }
+            else if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
             } else {
@@ -51,8 +60,11 @@ public class Viitehallintajarjestelma {
             }
         }
     }
-
-    public static int testiMetodi(int numero) {
-        return numero + 2;
+    public void uusiViite(){
+        
     }
+    public void listaaViitteet(){
+        
+    }
+
 }
