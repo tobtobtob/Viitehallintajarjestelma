@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package boileri.viitehallintajarjestelma.Dao;
+package boileri.viitehallintajarjestelma.dao;
 
 import boileri.viitehallintajarjestelma.domain.Viite;
 import java.util.ArrayList;

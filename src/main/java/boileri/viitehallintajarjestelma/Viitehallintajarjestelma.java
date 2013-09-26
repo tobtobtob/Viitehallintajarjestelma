@@ -6,8 +6,8 @@ package boileri.viitehallintajarjestelma;
  */
 import boileri.io.ViiteIO;
 import boileri.io.ViiteTextIO;
-import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
-import boileri.viitehallintajarjestelma.Dao.ViiteDao;
+import boileri.viitehallintajarjestelma.dao.InMemoryDao;
+import boileri.viitehallintajarjestelma.dao.ViiteDao;
 import java.io.InputStream;
 //import boileri.viitehallintajarjestelma.domain.PerusViite;
 //import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
@@ -49,7 +49,7 @@ public class Viitehallintajarjestelma {
             if (command.equals("listaa")){
                 listaaViitteet();
             }
-            if (command.equals("uusi")){
+            else if (command.equals("uusi")){
                 uusiViite();
             }
             else if (command.isEmpty()) {
