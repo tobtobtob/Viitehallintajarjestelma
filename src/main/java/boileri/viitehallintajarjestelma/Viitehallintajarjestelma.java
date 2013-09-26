@@ -86,7 +86,9 @@ public class Viitehallintajarjestelma {
         }
     }
     public void listaaViitteet(){
-        
+        for (Viite viite : dao.haeKaikki()) {
+            System.out.println(viite);
+        }
     }
 
 }

@@ -10,6 +10,9 @@ import java.util.List;
 
 public class Viite {
     
+    protected List<String> kentat;
+    protected List<String> sisalto;
+    
     public static List<String> getPakollisetKentat(String tyyppi){
         if(tyyppi.equals("inproceedings")){
             return new InProceedingsViite(null).getKentat();
@@ -22,5 +25,13 @@ public class Viite {
            return new InProceedingsViite(pakolliset);
        }
        return null;
+   }
+    @Override
+   public String toString(){
+       String ret = "";
+       for(int i = 0; i<kentat.size();i++){
+           ret += kentat.get(i)+sisalto.get(i)+"\n";
+       }
+       return ret;
    }
 }
