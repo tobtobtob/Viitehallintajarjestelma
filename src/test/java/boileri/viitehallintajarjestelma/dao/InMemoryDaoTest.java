@@ -37,17 +37,26 @@ public class InMemoryDaoTest {
      }
      @Test 
      public void palauttaaTrueJosAsiallinenViite(){
-         List<String> testi = new ArrayList<String>();
+        
+         Viite v = luoViite();
+         assertEquals(true, dao.tallennaViite(v));
+     }
+     @Test
+     public void poistoToimii(){
+         Viite v = luoViite();
+         dao.tallennaViite(v);
+         assertEquals(1, dao.haeKaikki().size());
+         dao.poistaViite(v);
+         assertEquals(0, dao.haeKaikki().size());
+     }
+
+    private Viite luoViite() {
+        List<String> testi = new ArrayList<String>();
         testi.add("A");
         testi.add("T");
         testi.add("B");
         testi.add("Y");
-         Viite v = Viite.luoViite(testi, "inproceedings");
-         assertEquals(true, dao.tallennaViite(v));
-     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+        Viite v = Viite.luoViite(testi, "inproceedings");
+        return v;
+    }
 }
