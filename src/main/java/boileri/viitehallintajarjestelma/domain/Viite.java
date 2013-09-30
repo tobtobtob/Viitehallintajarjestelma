@@ -36,7 +36,7 @@ public class Viite {
    public String toString(){
        String ret = "";
        for(int i = 0; i<kentat.size();i++){
-           ret += kentat.get(i)+sisalto.get(i)+"\n";
+           ret += kentat.get(i)+": "+sisalto.get(i)+"\n";
        }
        return ret;
    }

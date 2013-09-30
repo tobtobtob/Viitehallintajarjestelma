@@ -14,22 +14,14 @@ import java.util.List;
 
 public class InProceedingsViite extends Viite{
 
-//    private List<String> kentat = new ArrayList(4);
-//    private List<String> sisalto;
-//    {
-//        kentat.add("Author: ");
-//        kentat.add("Title: ");
-//        kentat.add("Book title: ");
-//        kentat.add("Year: ");
-//  }
 
     public InProceedingsViite(List<String> sisalto) {
         
         super.kentat = new ArrayList<String>();
-        super.kentat.add("Author: ");
-        super.kentat.add("Title: ");
-        super.kentat.add("Book title: ");
-        super.kentat.add("Year: ");
+        super.kentat.add("author");
+        super.kentat.add("title");
+        super.kentat.add("booktitle");
+        super.kentat.add("year");
         this.sisalto = sisalto;  
     }
     

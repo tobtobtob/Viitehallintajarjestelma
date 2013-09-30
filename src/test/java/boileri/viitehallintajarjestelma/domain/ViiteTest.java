@@ -43,10 +43,10 @@ public class ViiteTest {
         List<String> actual = Viite.getPakollisetKentat("inproceedings");
         List<String> expected = new ArrayList<String>() {
         };
-        expected.add("Author: ");
-        expected.add("Title: ");
-        expected.add("Book title: ");
-        expected.add("Year: ");
+        expected.add("author");
+        expected.add("title");
+        expected.add("booktitle");
+        expected.add("year");
         assertEquals(actual, expected);
     }
 
@@ -59,7 +59,7 @@ public class ViiteTest {
         otsikot.add("B");
         otsikot.add("Y");
         Viite x = Viite.luoViite(otsikot, "inproceedings");
-        String expected = "Author: A\nTitle: T\nBook title: B\nYear: Y\n";
+        String expected = "author: A\ntitle: T\nbooktitle: B\nyear: Y\n";
         assertEquals(x.toString(), expected);
     }
 
