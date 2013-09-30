@@ -16,7 +16,10 @@ public class InProceedingsViite extends Viite{
 
 
     public InProceedingsViite(List<String> sisalto) {
+        super.tyyppi = "inproceedings";
         
+        //id tulis antaa konstruktorissa
+        super.id = "testiID";
         super.kentat = new ArrayList<String>();
         super.kentat.add("author");
         super.kentat.add("title");

@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Viite {
     
+    protected String id;
+    protected String tyyppi;
     protected List<String> kentat;
     protected List<String> sisalto;
     
@@ -38,6 +40,15 @@ public class Viite {
        for(int i = 0; i<kentat.size();i++){
            ret += kentat.get(i)+": "+sisalto.get(i)+"\n";
        }
+       return ret;
+   }
+   public String toBibTex(){
+       String ret = "@"+this.tyyppi+"{"+this.id+"\n";
+       
+       for(int i = 0; i<kentat.size();i++){
+           ret += kentat.get(i)+" = {"+sisalto.get(i)+"},\n";
+       }
+       ret += "}";
        return ret;
    }
 }
