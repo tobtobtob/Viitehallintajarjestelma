@@ -53,6 +53,8 @@ public class Viitehallintajarjestelma {
                 listaaViitteet();
             } else if (command.equals("uusi")) {
                 uusiViite();
+            } else if (command.equals("generoi")) {
+                generoiBibTex();
             } else if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
@@ -88,5 +90,19 @@ public class Viitehallintajarjestelma {
         for (Viite viite : dao.haeKaikki()) {
             System.out.println(viite);
         }
+    }
+
+    private void generoiBibTex() {
+        io.print("Anna tiedoston nimi:");
+        String tiedostonimi = io.readLine();
+        BibTexGeneraattori bib = new BibTexGeneraattori();
+        
+        if(bib.writeBibTex(dao.haeKaikki(), tiedostonimi)){
+            io.print("tiedoston generointi onnistui");
+        } else{
+            io.print("tiedoston generointi epäonnistui");
+        }
+        
+                
     }
 }

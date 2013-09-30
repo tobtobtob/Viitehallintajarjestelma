@@ -1,7 +1,13 @@
+package boileri.viitehallintajarjestelma;
+
 
 import boileri.viitehallintajarjestelma.domain.Viite;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -22,9 +28,15 @@ public class BibTexGeneraattori {
         } else{
             tiedostonimi += ".bib";
         }
-        
-        
-        
+        try {
+            fw = new FileWriter(new File(tiedostonimi));
+            for (Viite viite : viitteet) {
+                fw.write(viite.toBibTex());
+            }
+            fw.close();
+        } catch (IOException ex) {
+            return false;
+        }      
         return true;
     }
 }

@@ -43,12 +43,12 @@ public class Viite {
        return ret;
    }
    public String toBibTex(){
-       String ret = "@"+this.tyyppi+"{"+this.id+"\n";
+       String ret = "@"+this.tyyppi+"{"+this.id+",\n";
        
        for(int i = 0; i<kentat.size();i++){
            ret += kentat.get(i)+" = {"+sisalto.get(i)+"},\n";
        }
-       ret += "}";
+       ret += "}\n";
        return ret;
    }
 }
