@@ -15,11 +15,12 @@ import java.util.logging.Logger;
  */
 
 
-public class BibTexGeneraattori {
+public class BibTexKirjoittaja {
     
     FileWriter fw;
     String tiedostonimi;
     
+   
     public boolean writeBibTex(List<Viite> viitteet, String tiedostonimi){
         
         this.tiedostonimi = tiedostonimi;
@@ -29,7 +30,9 @@ public class BibTexGeneraattori {
             tiedostonimi += ".bib";
         }
         try {
-            fw = new FileWriter(new File(tiedostonimi));
+            if(fw == null){
+                fw = new FileWriter(new File(tiedostonimi));
+            }
             for (Viite viite : viitteet) {
                 fw.write(viite.toBibTex());
             }
@@ -39,4 +42,13 @@ public class BibTexGeneraattori {
         }      
         return true;
     }
+
+    public BibTexKirjoittaja() {
+    }
+    
+    //Toinen konstruktori vain testausta varten. 
+    public BibTexKirjoittaja(FileWriter fw){
+        this.fw = fw;
+    }
+    
 }

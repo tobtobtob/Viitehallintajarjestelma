@@ -95,7 +95,7 @@ public class Viitehallintajarjestelma {
     private void generoiBibTex() {
         io.print("Anna tiedoston nimi:");
         String tiedostonimi = io.readLine();
-        BibTexGeneraattori bib = new BibTexGeneraattori();
+        BibTexKirjoittaja bib = new BibTexKirjoittaja();
         
         if(bib.writeBibTex(dao.haeKaikki(), tiedostonimi)){
             io.print("tiedoston generointi onnistui");
