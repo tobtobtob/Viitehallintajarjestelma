@@ -21,9 +21,9 @@ public class ViiteTextIO implements ViiteIO {
     }
 
     // Kuuntelee input-syötettä ja palauttaa annetun kokonaisluvun
+    // Palauttaa -1 jos virheellinen (ei int) syöte
     @Override
-    public int readInt(String prompt) {
-        System.out.print(prompt + " ");
+    public int readInt() {
         try {
             int i = Integer.parseInt(scanner.nextLine());
             if (i < 0) {
@@ -37,8 +37,7 @@ public class ViiteTextIO implements ViiteIO {
 
     // Kuuntelee input-syötettä ja palauttaa annetun merkkijonon
     @Override
-    public String readLine(String prompt) {
-        System.out.print(prompt + " ");
+    public String readLine() {
         return scanner.nextLine();
     }
 }

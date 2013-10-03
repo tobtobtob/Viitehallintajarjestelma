@@ -47,15 +47,18 @@ public class Viitehallintajarjestelma {
         while (true) {
             io.print("Syötä komento:");
             io.print("Tyhjä syöte sammuttaa ohjelman\n");
-            command = io.readLine(">");
-            
-            if (command.equals("listaa")){
+            io.print("listaa");
+            io.print("uusi");
+            io.print("generoi");
+            command = io.readLine();
+
+            if (command.equals("listaa")) {
                 listaaViitteet();
-            }
-            else if (command.equals("uusi")){
+            } else if (command.equals("uusi")) {
                 uusiViite();
-            }
-            else if (command.isEmpty()) {
+            } else if (command.equals("generoi")) {
+                generoiBibTex();
+            } else if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
             } else {
@@ -63,32 +66,46 @@ public class Viitehallintajarjestelma {
             }
         }
     }
-    public void uusiViite(){
-        
+
+    public void uusiViite() {
+
         io.print("Anna viitteen tyyppi:");
-        String tyyppi = io.readLine(">");
+        String tyyppi = io.readLine();
         List<String> kentat = Viite.getPakollisetKentat(tyyppi);
-        if(kentat == null){
+        if (kentat == null) {
             io.print("Virheellinen tyyppi");
             return;
         }
         List<String> syotetytKentat = new ArrayList<String>();
         for (String kentta : kentat) {
-            io.print("syötä kenttä \""+kentta+"\":");
-            syotetytKentat.add(io.readLine(">"));
+            io.print("syötä kenttä \"" + kentta + "\":");
+            syotetytKentat.add(io.readLine());
         }
         Viite uusi = Viite.luoViite(syotetytKentat, tyyppi);
-        if(dao.tallennaViite(uusi)){
+        uusi.generateId();
+        if (dao.tallennaViite(uusi)) {
             io.print("Viite tallennettu!");
-        }
-        else{
+        } else {
             io.print("Tallennus epäonnistui");
         }
     }
-    public void listaaViitteet(){
+
+    public void listaaViitteet() {
         for (Viite viite : dao.haeKaikki()) {
             System.out.println(viite);
         }
     }
 
+    private void generoiBibTex() {
+        io.print("Anna tiedoston nimi:");
+        String tiedostonimi = io.readLine();
+        BibTexKirjoittaja bib = new BibTexKirjoittaja();
+
+        if (bib.writeBibTex(dao.haeKaikki(), tiedostonimi)) {
+            io.print("tiedoston generointi onnistui");
+        } else {
+            io.print("tiedoston generointi epäonnistui");
+        }
+
+    }
 }
