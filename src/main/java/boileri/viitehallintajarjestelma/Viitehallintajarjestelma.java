@@ -5,6 +5,7 @@ package boileri.viitehallintajarjestelma;
  *
  */
 import boileri.io.ViiteIO;
+import boileri.io.ViiteStubIO;
 import boileri.io.ViiteTextIO;
 import boileri.viitehallintajarjestelma.dao.InMemoryDao;
 import boileri.viitehallintajarjestelma.dao.ViiteDao;
@@ -25,7 +26,11 @@ public class Viitehallintajarjestelma {
         io = new ViiteTextIO(d);
         dao = new InMemoryDao();
     }
-
+    public Viitehallintajarjestelma(ViiteIO io) {
+        
+        this.io = io;
+        dao = new InMemoryDao();
+    }
     public static void main(String[] args) {
 
 //        Testailua...        
