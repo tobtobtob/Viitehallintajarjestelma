@@ -47,6 +47,9 @@ public class Viitehallintajarjestelma {
         while (true) {
             io.print("Syötä komento:");
             io.print("Tyhjä syöte sammuttaa ohjelman\n");
+            io.print("listaa");
+            io.print("uusi");
+            io.print("generoi");
             command = io.readLine();
 
             if (command.equals("listaa")) {
@@ -79,6 +82,7 @@ public class Viitehallintajarjestelma {
             syotetytKentat.add(io.readLine());
         }
         Viite uusi = Viite.luoViite(syotetytKentat, tyyppi);
+        uusi.generateId();
         if (dao.tallennaViite(uusi)) {
             io.print("Viite tallennettu!");
         } else {
@@ -96,13 +100,12 @@ public class Viitehallintajarjestelma {
         io.print("Anna tiedoston nimi:");
         String tiedostonimi = io.readLine();
         BibTexKirjoittaja bib = new BibTexKirjoittaja();
-        
-        if(bib.writeBibTex(dao.haeKaikki(), tiedostonimi)){
+
+        if (bib.writeBibTex(dao.haeKaikki(), tiedostonimi)) {
             io.print("tiedoston generointi onnistui");
-        } else{
+        } else {
             io.print("tiedoston generointi epäonnistui");
         }
-        
-                
+
     }
 }

@@ -25,7 +25,7 @@ public class InProceedingsViite extends Viite{
         super.kentat.add("title");
         super.kentat.add("booktitle");
         super.kentat.add("year");
-        this.sisalto = sisalto;  
+        this.sisalto = sisalto; 
     }
     
     public List<String> getKentat() {

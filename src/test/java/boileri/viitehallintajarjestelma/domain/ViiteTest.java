@@ -93,6 +93,11 @@ public class ViiteTest {
     }
 
     @Test
+    public void generateIDTest() {
+        
+    }
+
+    @Test
     public void toStringTest() {
     }
 }
