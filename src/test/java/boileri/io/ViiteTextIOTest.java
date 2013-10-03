@@ -4,10 +4,7 @@
  */
 package boileri.io;
 
-<<<<<<< HEAD
-=======
 import java.io.ByteArrayInputStream;
->>>>>>> 37d060029b8d3f4206b14c23faeffeeef7883bd5
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.After;

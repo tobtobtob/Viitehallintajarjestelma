@@ -49,7 +49,7 @@ public class Viite {
             return viite;
         }
         if (tyyppi.equals("book")) {
-            Viite viite = new ArticleViite(pakolliset);
+            Viite viite = new BookViite(pakolliset);
             viite.generateId();
             return viite;
         }
@@ -81,7 +81,7 @@ public class Viite {
     // ottaa viitteen sisallon 3 ensimmaisen indeksin ensimmaiset merkit
     // ja neljannen indeksin kaksi ensimmaista merkkia ja runttaa ne yhteen
     // asettaa id:si "NULL", jos jokin merkkijonoista liian lyhyt
-    public void generateId() {
+    public void generateId() { 
         try {
             this.id = sisalto.get(0).substring(0, 1) + sisalto.get(1).substring(0, 1)
                     + sisalto.get(2).substring(0, 1) + sisalto.get(3).substring(0, 2);
