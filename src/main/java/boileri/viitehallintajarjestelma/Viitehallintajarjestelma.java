@@ -13,7 +13,6 @@ import boileri.viitehallintajarjestelma.domain.Viite;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-//import boileri.viitehallintajarjestelma.domain.PerusViite;
 //import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
 //import java.util.ArrayList;
 
@@ -33,16 +32,6 @@ public class Viitehallintajarjestelma {
     }
     public static void main(String[] args) {
 
-//        Testailua...        
-//        ArrayList<String> b =new ArrayList();
-//        b.add("a");
-//        b.add("b");
-//        b.add("c");
-//        b.add("d");
-//        PerusViite x = new PerusViite(b);
-//        InMemoryDao y = new InMemoryDao();
-//        y.tallennaViite(x);
-//        System.out.println(x);
         Viitehallintajarjestelma viitejar = new Viitehallintajarjestelma(System.in);
         viitejar.run();
     }

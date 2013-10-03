@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.mockito.Mockito.*;
 
+// @author Outt
 
 description 'User can create a new Viite and feel very yay about it'
 
@@ -16,18 +17,18 @@ description 'User can create a new Viite and feel very yay about it'
 scenario "user can create a new viite", {
     given 'command uusi selected', {
     
-    io = new ViiteStubIO("uusi","inproceedings","A","B","C","D")
-    app = new Viitehallintajarjestelma(io)
+          io = new ViiteStubIO("uusi","inproceedings","A","B","C","D")
+          app = new Viitehallintajarjestelma(io)
     
  
-}
+    }
     when 'viite data is given', {
-    app.run()
-}
+          app.run()
+    }
     
-    then 'new viite is alive', {
+    then 'new viite is alive, ALIVE!', {
           io.getPrints().shouldHave("Viite tallennettu!")
-}
+    }
 
 }
 
