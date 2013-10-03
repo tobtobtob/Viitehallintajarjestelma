@@ -82,7 +82,6 @@ public class Viitehallintajarjestelma {
             syotetytKentat.add(io.readLine());
         }
         Viite uusi = Viite.luoViite(syotetytKentat, tyyppi);
-        uusi.generateId();
         if (dao.tallennaViite(uusi)) {
             io.print("Viite tallennettu!");
         } else {

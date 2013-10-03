@@ -4,18 +4,29 @@
  */
 package boileri.viitehallintajarjestelma.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Viite {
 
     protected String id;
     protected String tyyppi;
-    protected List<String> kentat;
+    protected final List<String> kentat;
     protected List<String> sisalto;
+
+    public Viite() {
+        kentat = new ArrayList<String>();
+    }
 
     public static List<String> getPakollisetKentat(String tyyppi) {
         if (tyyppi.equals("inproceedings")) {
             return new InProceedingsViite(null).getKentat();
+        }
+        if (tyyppi.equals("article")) {
+            return new ArticleViite(null).getKentat();
+        }
+        if (tyyppi.equals("book")) {
+            return new BookViite(null).getKentat();
         }
         return null;
     }
@@ -28,7 +39,19 @@ public class Viite {
             }
         }
         if (tyyppi.equals("inproceedings")) {
-            return new InProceedingsViite(pakolliset);
+            Viite viite = new InProceedingsViite(pakolliset);
+            viite.generateId();
+            return viite;
+        }
+        if (tyyppi.equals("article")) {
+            Viite viite = new ArticleViite(pakolliset);
+            viite.generateId();
+            return viite;
+        }
+        if (tyyppi.equals("book")) {
+            Viite viite = new ArticleViite(pakolliset);
+            viite.generateId();
+            return viite;
         }
         return null;
     }
@@ -36,8 +59,12 @@ public class Viite {
     @Override
     public String toString() {
         String ret = "";
-        for (int i = 0; i < kentat.size(); i++) {
-            ret += kentat.get(i) + ": " + sisalto.get(i) + "\n";
+        try {
+            for (int i = 0; i < kentat.size(); i++) {
+                ret += kentat.get(i) + ": " + sisalto.get(i) + "\n";
+            }
+        } catch (IndexOutOfBoundsException e) {
+            return "IndexOutOfBoundsException";
         }
         return ret;
     }
@@ -53,13 +80,13 @@ public class Viite {
 
     // ottaa viitteen sisallon 3 ensimmaisen indeksin ensimmaiset merkit
     // ja neljannen indeksin kaksi ensimmaista merkkia ja runttaa ne yhteen
-    // asettaa id:si "NulPo", jos liian lyhyita merkkijonoja
+    // asettaa id:si "NULL", jos jokin merkkijonoista liian lyhyt
     public void generateId() {
         try {
             this.id = sisalto.get(0).substring(0, 1) + sisalto.get(1).substring(0, 1)
                     + sisalto.get(2).substring(0, 1) + sisalto.get(3).substring(0, 2);
-        } catch (NullPointerException e) {
-            this.id = "NulPo";
+        } catch (StringIndexOutOfBoundsException e) {
+            this.id = "NULL";
         }
     }
 }
