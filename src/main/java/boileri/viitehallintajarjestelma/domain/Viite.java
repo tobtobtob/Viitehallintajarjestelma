@@ -81,12 +81,16 @@ public class Viite {
     // ottaa viitteen sisallon 3 ensimmaisen indeksin ensimmaiset merkit
     // ja neljannen indeksin kaksi ensimmaista merkkia ja runttaa ne yhteen
     // asettaa id:si "NULL", jos jokin merkkijonoista liian lyhyt
-    public void generateId() { 
+    public void generateId() {
         try {
             this.id = sisalto.get(0).substring(0, 1) + sisalto.get(1).substring(0, 1)
                     + sisalto.get(2).substring(0, 1) + sisalto.get(3).substring(0, 2);
         } catch (StringIndexOutOfBoundsException e) {
             this.id = "NULL";
         }
+    }
+
+    public String getId() {
+        return id;
     }
 }
