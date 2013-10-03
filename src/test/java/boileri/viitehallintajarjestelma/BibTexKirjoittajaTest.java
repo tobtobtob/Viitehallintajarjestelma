@@ -1,3 +1,5 @@
+package boileri.viitehallintajarjestelma;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -38,6 +40,14 @@ public class BibTexKirjoittajaTest {
         when(viite.toBibTex()).thenReturn("@testiviite{839\nauthor = {testimies},\n}\n");
         gen.writeBibTex(viitteet, "testi");
         verify(fw).write("@testiviite{839\nauthor = {testimies},\n}\n");
+    }
+    @Test
+    public void regexpLoytaaAakkoset() throws IOException{
+        List<Viite> viitteet = new ArrayList<Viite>();
+        viitteet.add(viite);
+        when(viite.toBibTex()).thenReturn("@testiviite{839\nauthor = {ärkkönen},\n}\n");
+        gen.writeBibTex(viitteet, "testi");
+        verify(fw).write("@testiviite{839\nauthor = {\"{a}rkk\"{o}nen},\n}\n");
     }
     @Test
     public void kirjoittaaUseammanViitteenOikein() throws IOException{
