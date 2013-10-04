@@ -14,7 +14,7 @@ public interface ViiteIO {
 
     void print(String toPrint);
 
-    int readInt(String prompt);
+    int readInt();
 
-    String readLine(String prompt);
+    String readLine();
 }
