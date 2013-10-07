@@ -34,7 +34,10 @@ public class BibTexKirjoittaja {
                 fw = new FileWriter(new File(tiedostonimi));
             }
             for (Viite viite : viitteet) {
-                fw.write(viite.toBibTex());
+                String temp = viite.toBibTex();
+                temp = temp.replaceAll("ä", "\"{a}");
+                temp = temp.replaceAll("ö", "\"{o}");
+                fw.write(temp);
             }
             fw.close();
         } catch (IOException ex) {

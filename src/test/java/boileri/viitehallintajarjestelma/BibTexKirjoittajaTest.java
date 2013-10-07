@@ -44,6 +44,14 @@ public class BibTexKirjoittajaTest {
     }
     
     @Test
+    public void regexpLoytaaAakkoset() throws IOException{
+        List<Viite> viitteet = new ArrayList<Viite>();
+        viitteet.add(viite);
+        when(viite.toBibTex()).thenReturn("@testiviite{839\nauthor = {ärkkönen},\n}\n");
+        gen.writeBibTex(viitteet, "testi");
+        verify(fw).write("@testiviite{839\nauthor = {\"{a}rkk\"{o}nen},\n}\n");
+    }
+    @Test
     public void kirjoittaaUseammanViitteenOikein() throws IOException{
         
         List<Viite> viitteet = new ArrayList<Viite>();

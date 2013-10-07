@@ -93,6 +93,30 @@ public class ViiteTest {
     }
 
     @Test
+    public void generateIdTestOikeaID() {
+        List<String> otsikot = new ArrayList<String>();
+        otsikot.add("Ass");
+        otsikot.add("Tar");
+        otsikot.add("Sima");
+        otsikot.add("2010");
+        Viite x = Viite.luoViite(otsikot, "inproceedings");
+
+        assertEquals("ATS20", x.getId());
+    }
+
+    @Test
+    public void generateIdNullJosHuonoSyote() {
+        List<String> otsikot = new ArrayList<String>();
+        otsikot.add("Ass");
+        otsikot.add("Tar");
+        otsikot.add("Sima");
+        otsikot.add("2");
+        Viite x = Viite.luoViite(otsikot, "inproceedings");
+
+        assertEquals("NULL", x.getId());
+    }
+
+    @Test
     public void toStringTest() {
     }
 }
