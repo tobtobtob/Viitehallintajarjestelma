@@ -35,12 +35,14 @@ public class BibTexKirjoittajaTest {
     }
     @Test
     public void kirjoittaaYhdenViitteenOikein() throws IOException{
+        
         List<Viite> viitteet = new ArrayList<Viite>();
         viitteet.add(viite);
         when(viite.toBibTex()).thenReturn("@testiviite{839\nauthor = {testimies},\n}\n");
         gen.writeBibTex(viitteet, "testi");
         verify(fw).write("@testiviite{839\nauthor = {testimies},\n}\n");
     }
+    
     @Test
     public void regexpLoytaaAakkoset() throws IOException{
         List<Viite> viitteet = new ArrayList<Viite>();
@@ -51,12 +53,13 @@ public class BibTexKirjoittajaTest {
     }
     @Test
     public void kirjoittaaUseammanViitteenOikein() throws IOException{
+        
         List<Viite> viitteet = new ArrayList<Viite>();
         viitteet.add(viite);
         viitteet.add(viite2);
         when(viite.toBibTex()).thenReturn("@testiviite{839\nauthor = {testimies},\n}\n");
         when(viite2.toBibTex()).thenReturn("@toinen{879\nauthor = {testimies},\n}\n");
-        gen.writeBibTex(viitteet, "nakki");
+        gen.writeBibTex(viitteet, "");
         verify(fw).write("@testiviite{839\nauthor = {testimies},\n}\n");
         verify(fw).write("@toinen{879\nauthor = {testimies},\n}\n");
     }
