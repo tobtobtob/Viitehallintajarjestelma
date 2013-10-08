@@ -33,8 +33,14 @@ public class InMemoryDao implements ViiteDao {
     }
 
     @Override
-    public void poistaViite(Viite viite) {
-        viitteet.remove(viite);
+    public boolean poistaViite(String id) {
+        for (Viite poistettava : viitteet) {
+            if (poistettava.getId().equals(id)) {
+                viitteet.remove(poistettava);
+                return true;
+            }
+        }
+        return false;
     }
     
     

@@ -25,11 +25,13 @@ public class Viitehallintajarjestelma {
         io = new ViiteTextIO(d);
         dao = new InMemoryDao();
     }
+
     public Viitehallintajarjestelma(ViiteIO io) {
-        
+
         this.io = io;
         dao = new InMemoryDao();
     }
+
     public static void main(String[] args) {
 
         Viitehallintajarjestelma viitejar = new Viitehallintajarjestelma(System.in);
@@ -44,6 +46,7 @@ public class Viitehallintajarjestelma {
             io.print("listaa");
             io.print("uusi");
             io.print("generoi");
+            io.print("poista");
             command = io.readLine();
 
             if (command.equals("listaa")) {
@@ -52,6 +55,8 @@ public class Viitehallintajarjestelma {
                 uusiViite();
             } else if (command.equals("generoi")) {
                 generoiBibTex();
+            } else if (command.equals("poista")) {
+               poistaViite();
             } else if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
@@ -100,5 +105,16 @@ public class Viitehallintajarjestelma {
             io.print("tiedoston generointi epäonnistui");
         }
 
+    }
+    
+    public void poistaViite() {
+        io.print("Anna viitteen id:");
+        String id = io.readLine();
+        boolean poisto = dao.poistaViite(id);
+        if (poisto == false) {
+            io.print("Virheellinen tai olematon id");
+        } else {
+            io.print("Viite poistettu");
+        }
     }
 }

@@ -10,19 +10,19 @@ import static org.mockito.Mockito.*;
 
 // @author Outt
 
-description 'User can create a new Viite and feel very yay about it'
+description 'User can create a new Viite and feel very yay about it and do other stuff as well woohoo'
 
 
 
-scenario "user can create a new viite", {
-    given 'command uusi selected', {
+scenario "kayttaja voi luoda uuden viitteen", {
+    given 'komento uusi valittu', {
     
           io = new ViiteStubIO("uusi","inproceedings","A","B","C","D")
           app = new Viitehallintajarjestelma(io)
     
  
     }
-    when 'viite data is given', {
+    when 'viitteen tiedot syotetty', {
           app.run()
     }
     
@@ -32,3 +32,16 @@ scenario "user can create a new viite", {
 
 }
 
+scenario "kayttaja voi listata viitteet", {
+    given 'komento listaa valittu'
+    when 'viitteita on olemassa'
+    then 'viitteet tulostuvat'
+
+}
+
+scenario "kayttaja voi poistaa viitteen, {
+    given 'komento poista valittu'
+    when 'viite on olemassa'
+    then 'viite poistetaan'
+
+}
