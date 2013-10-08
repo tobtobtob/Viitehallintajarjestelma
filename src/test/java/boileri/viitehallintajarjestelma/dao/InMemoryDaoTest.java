@@ -46,7 +46,7 @@ public class InMemoryDaoTest {
          Viite v = luoViite();
          dao.tallennaViite(v);
          assertEquals(1, dao.haeKaikki().size());
-         dao.poistaViite(v);
+         dao.poistaViite(v.getId());
          assertEquals(0, dao.haeKaikki().size());
      }
 
