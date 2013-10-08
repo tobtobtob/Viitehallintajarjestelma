@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +46,7 @@ public class BibTexKirjoittaja {
         }      
         return true;
     }
-
+    
     public BibTexKirjoittaja() {
     }
     
