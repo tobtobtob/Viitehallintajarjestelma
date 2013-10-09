@@ -10,5 +10,5 @@ public interface ViiteDao {
     
     public boolean tallennaViite(Viite viite);
     
-    public void poistaViite(Viite viite);
+    public boolean poistaViite(String id);
 }

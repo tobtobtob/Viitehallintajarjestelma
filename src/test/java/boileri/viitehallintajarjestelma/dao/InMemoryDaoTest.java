@@ -5,6 +5,7 @@
 package boileri.viitehallintajarjestelma.dao;
 
 import boileri.viitehallintajarjestelma.domain.Viite;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,9 +30,33 @@ public class InMemoryDaoTest {
         List<Viite> viitteet = dao.haeKaikki();
         assertEquals(0, viitteet.size());
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+     @Test
+     public void palauttaaFalseJosTallennetaanTyhjaaViitetta(){
+         assertEquals(false, dao.tallennaViite(null));
+     }
+     @Test 
+     public void palauttaaTrueJosAsiallinenViite(){
+        
+         Viite v = luoViite();
+         assertEquals(true, dao.tallennaViite(v));
+     }
+     @Test
+     public void poistoToimii(){
+         Viite v = luoViite();
+         dao.tallennaViite(v);
+         assertEquals(1, dao.haeKaikki().size());
+         dao.poistaViite(v.getId());
+         assertEquals(0, dao.haeKaikki().size());
+     }
+
+    private Viite luoViite() {
+        List<String> testi = new ArrayList<String>();
+        testi.add("A");
+        testi.add("T");
+        testi.add("B");
+        testi.add("Y");
+        Viite v = Viite.luoViite(testi, "inproceedings");
+        return v;
+    }
 }

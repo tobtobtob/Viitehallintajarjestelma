@@ -9,24 +9,24 @@ import java.util.List;
 
 /**
  *
- * @author Outt
+ * @author alpa
  */
+public class ArticleViite extends Viite {
 
-public class InProceedingsViite extends Viite{
+    public ArticleViite(List<String> sisalto) {
+        super.tyyppi = "article";
 
-
-    public InProceedingsViite(List<String> sisalto) {
-        super.tyyppi = "inproceedings";
-        
         //id tulis antaa konstruktorissa
 
         super.kentat.add("author");
         super.kentat.add("title");
-        super.kentat.add("booktitle");
+        super.kentat.add("journal");
         super.kentat.add("year");
-        this.sisalto = sisalto; 
+        super.kentat.add("volume");
+        super.kentat.add("pages");
+        this.sisalto = sisalto;
     }
-    
+
     public List<String> getKentat() {
         return super.kentat;
     }

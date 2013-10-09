@@ -4,20 +4,20 @@
  */
 package boileri.io;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import java.io.InputStream;
 import java.io.PrintStream;
 import org.junit.After;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author alpa
  */
 public class ViiteTextIOTest {
 
-    ViiteTextIO io;
+    ViiteIO io;
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final ByteArrayOutputStream outputErr = new ByteArrayOutputStream();
 
@@ -26,14 +26,14 @@ public class ViiteTextIOTest {
         io = new ViiteTextIO(System.in);
     }
 
-    // printin testin alustus
+    // Outputin alustus testia varten
     @Before
     public void setOutputStreams() {
         System.setOut(new PrintStream(output));
         System.setErr(new PrintStream(outputErr));
     }
 
-    // printin testin alustuksen nollaus
+    // Testienjälkeinen outputin nollaus
     @After
     public void cleanOutputStreams() {
         System.setOut(null);
@@ -54,17 +54,31 @@ public class ViiteTextIOTest {
 
     @Test
     public void readIntPalauttaaOikeanLuvun() {
+        io = setNewInputStream("12");
+        assertEquals(12, io.readInt());
     }
 
     @Test
     public void readIntPalauttaaMiinusYksiKunNegLuku() {
+
+        io = setNewInputStream("-5");
+        assertEquals(-1, io.readInt());
     }
 
     @Test
     public void readIntePalauttaaMiinusYksiKunEiLuku() {
+        io = setNewInputStream("matias");
+        assertEquals(-1, io.readInt());
     }
 
     @Test
     public void readStringPalauttaaOikeinRivin() {
+        io = setNewInputStream("iso ja pieni");
+        assertEquals("iso ja pieni", io.readLine());
+    }
+
+    public ViiteTextIO setNewInputStream(String s) {
+        ByteArrayInputStream in = new ByteArrayInputStream(s.getBytes());
+        return new ViiteTextIO(in);
     }
 }
