@@ -18,21 +18,23 @@ public class BibTexLukija {
     public List<Viite> lueViitteet(String tiedostoNimi, Scanner s){
         List<Viite> viitteet = new ArrayList();
         this.s = s;
-        String id, tyyppi;
+        String rivi;
         HashMap<String, String> arvot;
         
         while(s.hasNextLine()){
             arvot = new HashMap<String, String>();
             String[] temp = getTyyppiJaID(s.nextLine());
-            id = temp[1];
-            tyyppi = temp[0];
-            String rivi = s.nextLine();
+            arvot.put("id", temp[1]);
+            arvot.put("tyyppi", temp[0]);
+            rivi = s.nextLine();
             
             while(eiTurhaRivi(rivi)){
                 arvot.put(getKentta(rivi), getArvo(rivi));
                 rivi = s.nextLine();
             }
+            viitteet.add(luoViite(arvot));
         }
+        
         return viitteet;
     }
     public String[] getTyyppiJaID(String rivi){
@@ -99,5 +101,16 @@ public class BibTexLukija {
             }
         }
         return false;
+    }
+
+    private Viite luoViite(HashMap<String, String> arvot) {
+        List<String> kentat = Viite.getPakollisetKentat(arvot.get("tyyppi"));
+        List<String> sisalto = new ArrayList<String>();
+        
+        for (String kentta : kentat) {
+            sisalto.add(arvot.get(kentta));
+        }
+        return Viite.luoViite(sisalto, arvot.get("tyyppi"));
+        
     }
 }

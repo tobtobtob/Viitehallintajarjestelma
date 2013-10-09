@@ -1,12 +1,19 @@
+package boileri.viitehallintajarjestelma;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
 import boileri.viitehallintajarjestelma.BibTexLukija;
+import boileri.viitehallintajarjestelma.domain.Viite;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -15,6 +22,7 @@ import static org.junit.Assert.*;
 public class BibTexLukijaTest {
     
     BibTexLukija bib;
+    Scanner s;
     
     public BibTexLukijaTest() {
     }
@@ -45,6 +53,22 @@ public class BibTexLukijaTest {
         String id = bib.getTyyppiJaID("@inproceedings{testiID,")[1];
         assertEquals("testiID", id);
     }
+    @Test
+    public void loytaaKivastiYhdenViitteen(){
+        s = new Scanner("@book{BA04,\n"+
+"author = {Beck, Kent and Andres, Cynthia},\n"+
+"title = {Extreme Programming Explained: Embrace Change (2nd Edition)},\n"+
+"year = {2004},\n"+
+"publisher = {Addison-Wesley Professional},\n"+
+"})");
+        List<Viite> viitteet = bib.lueViitteet(null,s);
+        String viite = viitteet.get(0).toString();
+        assertEquals("author: Beck, Kent and Andres, Cynthia\n"
+                + "title: Extreme Programming Explained: Embrace Change (2nd Edition)\n"
+                +"year: 2004\n"
+        + "publisher: Addison-Wesley Professional\n", viite);                
+    }
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
