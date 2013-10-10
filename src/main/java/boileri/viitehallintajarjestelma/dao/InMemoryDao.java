@@ -30,7 +30,9 @@ public class InMemoryDao implements ViiteDao {
         if (viite == null) {
             return false;
         }
-        viite.setId(gen.generoiId(viite));
+        if(viite.getId() == null){
+            viite.setId(gen.generoiId(viite));
+        }
         viitteet.add(viite);
         return true;
     }

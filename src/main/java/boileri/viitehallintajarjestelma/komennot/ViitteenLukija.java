@@ -35,7 +35,7 @@ public class ViitteenLukija implements Runnable {
         io.print("Anna tiedoston nimi:");
         String tiedostonNimi = io.readLine();
         try {
-            List<Viite> viitteet = bib.lueViitteet(tiedostonNimi, new Scanner(new File(tiedostonNimi)));
+            List<Viite> viitteet = bib.lueViitteet(new Scanner(new File(tiedostonNimi)));
             for (Viite viite : viitteet) {
                 dao.tallennaViite(viite);
             }
