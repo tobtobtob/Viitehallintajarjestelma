@@ -5,31 +5,41 @@ package boileri.viitehallintajarjestelma;
  *
  */
 import boileri.io.ViiteIO;
-import boileri.io.ViiteStubIO;
 import boileri.io.ViiteTextIO;
 import boileri.viitehallintajarjestelma.dao.InMemoryDao;
 import boileri.viitehallintajarjestelma.dao.ViiteDao;
-import boileri.viitehallintajarjestelma.domain.Viite;
+import boileri.viitehallintajarjestelma.komennot.ViiteGeneroija;
+import boileri.viitehallintajarjestelma.komennot.ViiteListaaja;
+import boileri.viitehallintajarjestelma.komennot.ViitteenLisaaja;
+import boileri.viitehallintajarjestelma.komennot.ViitteenPoistaja;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-//import boileri.viitehallintajarjestelma.Dao.InMemoryDao;
-//import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Viitehallintajarjestelma {
 
     public ViiteIO io;
     public ViiteDao dao;
+    public HashMap<String, Runnable> cmd;
 
     public Viitehallintajarjestelma(InputStream d) {
+        this.cmd = new HashMap<String, Runnable>();
         io = new ViiteTextIO(d);
         dao = new InMemoryDao();
+
+        luoKomentoLista();
+
     }
 
     public Viitehallintajarjestelma(ViiteIO io) {
-
         this.io = io;
         dao = new InMemoryDao();
+    }
+
+    private void luoKomentoLista() {
+        cmd.put("listaa", new ViiteListaaja(this));
+        cmd.put("uusi", new ViitteenLisaaja(this));
+        cmd.put("generoi", new ViiteGeneroija(this));
+        cmd.put("poista", new ViitteenPoistaja(this));
     }
 
     public static void main(String[] args) {
@@ -41,80 +51,21 @@ public class Viitehallintajarjestelma {
     public void run() {
         String command;
         while (true) {
-            io.print("Syötä komento:");
-            io.print("Tyhjä syöte sammuttaa ohjelman\n");
-            io.print("listaa");
-            io.print("uusi");
-            io.print("generoi");
-            io.print("poista");
+            io.print("Syötä komento:\n" + "Tyhjä syöte sammuttaa ohjelman\n");
+            io.print(" listaa\n uusi\n generoi\n poista");
+
             command = io.readLine();
 
-            if (command.equals("listaa")) {
-                listaaViitteet();
-            } else if (command.equals("uusi")) {
-                uusiViite();
-            } else if (command.equals("generoi")) {
-                generoiBibTex();
-            } else if (command.equals("poista")) {
-               poistaViite();
-            } else if (command.isEmpty()) {
+            if (command.isEmpty()) {
                 io.print("Sammutetaan ohjelma..");
                 break;
-            } else {
-                io.print("Tunnistamaton komento.\n");
             }
-        }
-    }
-
-    public void uusiViite() {
-
-        io.print("Anna viitteen tyyppi:");
-        String tyyppi = io.readLine();
-        List<String> kentat = Viite.getPakollisetKentat(tyyppi);
-        if (kentat == null) {
-            io.print("Virheellinen tyyppi");
-            return;
-        }
-        List<String> syotetytKentat = new ArrayList<String>();
-        for (String kentta : kentat) {
-            io.print("syötä kenttä \"" + kentta + "\":");
-            syotetytKentat.add(io.readLine());
-        }
-        Viite uusi = Viite.luoViite(syotetytKentat, tyyppi);
-        if (dao.tallennaViite(uusi)) {
-            io.print("Viite tallennettu!");
-        } else {
-            io.print("Tallennus epäonnistui");
-        }
-    }
-
-    public void listaaViitteet() {
-        for (Viite viite : dao.haeKaikki()) {
-            System.out.println(viite);
-        }
-    }
-
-    private void generoiBibTex() {
-        io.print("Anna tiedoston nimi:");
-        String tiedostonimi = io.readLine();
-        BibTexKirjoittaja bib = new BibTexKirjoittaja();
-
-        if (bib.writeBibTex(dao.haeKaikki(), tiedostonimi)) {
-            io.print("tiedoston generointi onnistui");
-        } else {
-            io.print("tiedoston generointi epäonnistui");
-        }
-
-    }
-    
-    public void poistaViite() {
-        io.print("Anna viitteen id:");
-        String id = io.readLine();
-        boolean poisto = dao.poistaViite(id);
-        if (poisto == false) {
-            io.print("Virheellinen tai olematon id");
-        } else {
-            io.print("Viite poistettu");
+            try {
+                cmd.get(command).run();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Tunnistamaton komento");
+            }
         }
     }
 }

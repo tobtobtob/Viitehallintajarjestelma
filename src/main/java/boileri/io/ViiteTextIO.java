@@ -11,7 +11,7 @@ public class ViiteTextIO implements ViiteIO {
     private Scanner scanner;
 
     public ViiteTextIO(InputStream d) {
-        scanner = new Scanner(d);
+        scanner = new Scanner(d, "UTF-8");
     }
 
     // Tulostaa annetun syötteen
