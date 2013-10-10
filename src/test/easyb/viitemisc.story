@@ -39,7 +39,7 @@ scenario "kayttaja voi poistaa viitteen", {
     given 'komento poista valittu', {
     
 
-          io = new ViiteStubIO("poista","ABCDD")
+          io = new ViiteStubIO("uusi","inproceedings","A","B","C","D","poista","AB")
           app = new Viitehallintajarjestelma(io)
     
  
@@ -49,7 +49,7 @@ scenario "kayttaja voi poistaa viitteen", {
     }
     
     then 'viite on poistettu', {
-          io.getPrints().shouldHave("Virheellinen tai olematon id")
+          io.getPrints().shouldHave("Viite poistettu")
     }
 
 }

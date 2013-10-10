@@ -38,7 +38,7 @@ public class Viite {
 
     @Override
     public String toString() {
-        String ret = "";
+        String ret = "id: "+this.id+"\n";
 
         for (int i = 0; i < kentat.size(); i++) {
             ret += kentat.get(i) + ": " + sisalto.get(i) + "\n";
