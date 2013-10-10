@@ -60,7 +60,8 @@ public class ViiteTest {
         otsikot.add("Y");
         Viite x = Viite.luoViite("inproceedings");
         x.setSisalto(otsikot);
-        String expected = "author: A\ntitle: T\nbooktitle: B\nyear: Y\n";
+        x.setId("0.o");
+        String expected = "id: 0.o\nauthor: A\ntitle: T\nbooktitle: B\nyear: Y\n";
         assertEquals(x.toString(), expected);
     }
 
