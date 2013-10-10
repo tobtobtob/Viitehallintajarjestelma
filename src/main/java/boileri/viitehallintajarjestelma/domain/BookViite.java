@@ -20,9 +20,4 @@ public class BookViite extends Viite {
         kentat.add("publisher");
     }
 
-    @Override
-    public void generateId() {
-         id = "hah";
-    }
-
 }

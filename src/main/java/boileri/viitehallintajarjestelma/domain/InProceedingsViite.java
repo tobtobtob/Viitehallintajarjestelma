@@ -10,6 +10,8 @@ package boileri.viitehallintajarjestelma.domain;
  */
 public class InProceedingsViite extends Viite {
 
+    
+
     public InProceedingsViite() {
         super.tyyppi = "inproceedings";
 
@@ -19,9 +21,5 @@ public class InProceedingsViite extends Viite {
         kentat.add("year");
     }
 
-    @Override
-    public void generateId() {
-         id = "huh";
-    }
 
-  }
+}
