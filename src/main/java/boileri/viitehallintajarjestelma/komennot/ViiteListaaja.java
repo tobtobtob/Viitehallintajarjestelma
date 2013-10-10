@@ -22,7 +22,8 @@ public class ViiteListaaja implements Runnable {
     @Override
     public void run() {
         for (Viite viite : jarjestelma.dao.haeKaikki()) {
-            System.out.println(viite);
+            jarjestelma.io.print(viite.toString());
+       
         }
     }
 }
