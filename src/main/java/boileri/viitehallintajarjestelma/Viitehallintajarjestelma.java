@@ -26,7 +26,7 @@ public class Viitehallintajarjestelma {
         this.cmd = new HashMap<String, Runnable>();
         io = new ViiteTextIO(d);
         dao = new InMemoryDao();
-
+        
         luoKomentoLista();
 
     }

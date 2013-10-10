@@ -61,9 +61,9 @@ public class BibTexLukijaTest {
 "year = {2004},\n"+
 "publisher = {Addison-Wesley Professional},\n"+
 "})");
-        List<Viite> viitteet = bib.lueViitteet(null,s);
+        List<Viite> viitteet = bib.lueViitteet(s);
         String viite = viitteet.get(0).toString();
-        assertEquals("author: Beck, Kent and Andres, Cynthia\n"
+        assertEquals("id: BA04\nauthor: Beck, Kent and Andres, Cynthia\n"
                 + "title: Extreme Programming Explained: Embrace Change (2nd Edition)\n"
                 +"year: 2004\n"
         + "publisher: Addison-Wesley Professional\n", viite);                
