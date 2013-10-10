@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.mockito.Mockito.*;
+import java.util.ArrayList;
 
 // @author Outt
 
@@ -40,10 +41,12 @@ scenario "kayttaja ei voi luoda olematonta viitetta", {
     
  
     }
-    when 'vaara viite annettu'
+    when 'vaara viite annettu', {
+          app.run()
+    }
     
     then 'new viite is not alive, ALIVE!', {
-          io.getPrints().shouldHave("virheellinen tyyppi")
+          io.getPrints().shouldHave("Virheellinen tyyppi")
     }
 
 }
@@ -51,7 +54,7 @@ scenario "kayttaja ei voi luoda olematonta viitetta", {
 scenario "kayttaja voi listata viitteet", {
     given 'komento listaa valittu', {
     
-          io = new ViiteStubIO("uusi","inproceedings","A","B","C","D")
+          io = new ViiteStubIO("uusi","inproceedings","A","B","C","D","listaa")
           app = new Viitehallintajarjestelma(io)
     
  
@@ -60,14 +63,7 @@ scenario "kayttaja voi listata viitteet", {
           app.run()
     }
     then 'viitteet tulostuvat', {
-          io.getPrints().shouldHave("D")
+          io.getPrints().shouldHave("author: A\ntitle: B\nbooktitle: C\nyear: D")
     }
-
-}
-
-scenario "kayttaja voi poistaa viitteen, {
-    given 'komento poista valittu'
-    when 'viite on olemassa'
-    then 'viite poistetaan'
 
 }
