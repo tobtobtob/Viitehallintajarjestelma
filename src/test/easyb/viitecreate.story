@@ -32,10 +32,36 @@ scenario "kayttaja voi luoda uuden viitteen", {
 
 }
 
+scenario "kayttaja ei voi luoda olematonta viitetta", {
+    given 'komento uusi valittu', {
+    
+          io = new ViiteStubIO("uusi","failviite")
+          app = new Viitehallintajarjestelma(io)
+    
+ 
+    }
+    when 'vaara viite annettu'
+    
+    then 'new viite is not alive, ALIVE!', {
+          io.getPrints().shouldHave("virheellinen tyyppi")
+    }
+
+}
+
 scenario "kayttaja voi listata viitteet", {
-    given 'komento listaa valittu'
-    when 'viitteita on olemassa'
-    then 'viitteet tulostuvat'
+    given 'komento listaa valittu', {
+    
+          io = new ViiteStubIO("uusi","inproceedings","A","B","C","D")
+          app = new Viitehallintajarjestelma(io)
+    
+ 
+    }
+    when 'viitteita on olemassa', {
+          app.run()
+    }
+    then 'viitteet tulostuvat', {
+          io.getPrints().shouldHave("D")
+    }
 
 }
 

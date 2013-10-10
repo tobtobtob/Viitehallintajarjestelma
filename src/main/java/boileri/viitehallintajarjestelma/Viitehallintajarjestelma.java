@@ -32,8 +32,11 @@ public class Viitehallintajarjestelma {
     }
 
     public Viitehallintajarjestelma(ViiteIO io) {
+        this.cmd = new HashMap<String, Runnable>();
         this.io = io;
         dao = new InMemoryDao();
+
+        luoKomentoLista();
     }
 
     private void luoKomentoLista() {
