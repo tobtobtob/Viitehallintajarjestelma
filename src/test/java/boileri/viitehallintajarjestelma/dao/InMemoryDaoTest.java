@@ -56,7 +56,7 @@ public class InMemoryDaoTest {
         testi.add("T");
         testi.add("B");
         testi.add("Y");
-        Viite v = Viite.luoViite(testi, "inproceedings");
+        Viite v = Viite.luoViite("inproceedings");
         return v;
     }
 }
