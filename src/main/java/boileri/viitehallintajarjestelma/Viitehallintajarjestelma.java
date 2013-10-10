@@ -65,11 +65,12 @@ public class Viitehallintajarjestelma {
                 io.print("Sammutetaan ohjelma..");
                 break;
             }
-            try {
-                cmd.get(command).run();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Tunnistamaton komento");
+            Runnable komento = cmd.get(command);
+            if(komento == null){
+                io.print("tunnistamaton komento");
+            }
+            else{
+                komento.run();
             }
         }
     }
