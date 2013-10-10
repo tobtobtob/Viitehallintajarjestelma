@@ -20,30 +20,30 @@ import java.util.List;
  * @author alpa
  */
 public class ViitteenLisaaja implements Runnable {
-    
+
     private final Viitehallintajarjestelma jarjestelma;
     HashMap<String, Viite> maaritellyt;
-    
+
     public ViitteenLisaaja(final Viitehallintajarjestelma jarjestelma) {
         this.jarjestelma = jarjestelma;
         maaritellyt = new HashMap<String, Viite>();
         alustaMaaritellyt();
     }
-    
+
     public final void alustaMaaritellyt() {
         maaritellyt.put("inproceedings", new InProceedingsViite());
         maaritellyt.put("article", new ArticleViite());
         maaritellyt.put("book", new BookViite());
     }
-    
+
     @Override
     public void run() {
         ViiteIO io = jarjestelma.io;
         ViiteDao dao = jarjestelma.dao;
-        
+
         io.print("Anna viitteen tyyppi:");
         String tyyppi = io.readLine();
-        
+
         if (!maaritellyt.containsKey(tyyppi)) {
             for (String object : maaritellyt.keySet()) {
                 io.print(object);
@@ -64,6 +64,5 @@ public class ViitteenLisaaja implements Runnable {
         } else {
             io.print("Tallennus epäonnistui");
         }
-        
     }
 }

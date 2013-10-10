@@ -20,9 +20,4 @@ public class ArticleViite extends Viite {
         kentat.add("volume");
         kentat.add("pages");
     }
-
-    @Override
-    public void generateId() {
-        id = "hih";
-    }
 }

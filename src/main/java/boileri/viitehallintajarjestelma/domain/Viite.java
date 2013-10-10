@@ -5,16 +5,14 @@
 package boileri.viitehallintajarjestelma.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public abstract class Viite {
+public class Viite {
 
     protected String id;
     protected String tyyppi;
     protected final List<String> kentat;
     protected List<String> sisalto;
-    IDGenerator gen;
 
     public Viite() {
         kentat = new ArrayList<String>();
@@ -25,17 +23,14 @@ public abstract class Viite {
 
         if (tyyppi.equals("inproceedings")) {
             Viite viite = new InProceedingsViite();
-            viite.generateId();
             return viite;
         }
         if (tyyppi.equals("article")) {
             Viite viite = new ArticleViite();
-            viite.generateId();
             return viite;
         }
         if (tyyppi.equals("book")) {
             Viite viite = new BookViite();
-            viite.generateId();
             return viite;
         }
         return null;
@@ -61,13 +56,6 @@ public abstract class Viite {
         return ret;
     }
 
-    // ottaa viitteen sisallon 3 ensimmaisen indeksin ensimmaiset merkit
-    // ja neljannen indeksin kaksi ensimmaista merkkia ja runttaa ne yhteen
-    // asettaa id:si "NULL", jos jokin merkkijonoista liian lyhyt
-    public abstract void generateId();
-     
-    
-
     public void setId(String newId) {
         this.id = newId;
     }
@@ -83,6 +71,10 @@ public abstract class Viite {
 
     public String getTyyppi() {
         return tyyppi;
+    }
+
+    public List<String> getSisalto() {
+        return sisalto;
     }
 
     public final List<String> getKentat() {

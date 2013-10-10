@@ -2,20 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boileri.viitehallintajarjestelma.dao;
 
 import boileri.viitehallintajarjestelma.domain.Viite;
+import boileri.viitehallintajarjestelma.komennot.IDGeneroija;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class InMemoryDao implements ViiteDao {
-    
+
     private List<Viite> viitteet;
+    IDGeneroija gen;
 
     public InMemoryDao() {
-        viitteet = new ArrayList<Viite>();        
+
+        viitteet = new ArrayList<Viite>();
+        gen = new IDGeneroija(this);
     }
 
     @Override
@@ -25,9 +27,10 @@ public class InMemoryDao implements ViiteDao {
 
     @Override
     public boolean tallennaViite(Viite viite) {
-        if(viite == null){
+        if (viite == null) {
             return false;
         }
+        viite.setId(gen.generoiId(viite));
         viitteet.add(viite);
         return true;
     }
@@ -42,7 +45,4 @@ public class InMemoryDao implements ViiteDao {
         }
         return false;
     }
-    
-    
-    
 }
