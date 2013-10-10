@@ -35,17 +35,17 @@ public class IDGeneroija {
         List<String> sisalto = v.getSisalto();
         int indexCounter = 0;
         while (true) {
-            if (sisalto.get(0).isEmpty()) {
+            if (sisalto.isEmpty() || sisalto.get(0).isEmpty()) {
                 etumerkit = "N" + Integer.toString(indexCounter);
             } else {
                 etumerkit = sisalto.get(0).substring(0, 1);
             }
-            if (sisalto.get(1).isEmpty()) {
+            if (sisalto.isEmpty() || sisalto.get(1).isEmpty()) {
                 valimerkit = "N" + Integer.toString(indexCounter);
             } else {
                 valimerkit = sisalto.get(1).substring(0, 1);
             }
-            if (sisalto.get(3).isEmpty() || sisalto.get(3).length() > indexCounter) {
+            if (sisalto.isEmpty() || sisalto.get(3).isEmpty() || sisalto.get(3).length() < indexCounter) {
                 loppumerkit = "0" + Integer.toString(indexCounter);
             } else {
                 loppumerkit = sisalto.get(3).substring(0, indexCounter);
