@@ -4,30 +4,25 @@
  */
 package boileri.viitehallintajarjestelma.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author alpa
  */
 public class ArticleViite extends Viite {
 
-    public ArticleViite(List<String> sisalto) {
+    public ArticleViite() {
         super.tyyppi = "article";
 
-        //id tulis antaa konstruktorissa
-
-        super.kentat.add("author");
-        super.kentat.add("title");
-        super.kentat.add("journal");
-        super.kentat.add("year");
-        super.kentat.add("volume");
-        super.kentat.add("pages");
-        this.sisalto = sisalto;
+        kentat.add("author");
+        kentat.add("title");
+        kentat.add("journal");
+        kentat.add("year");
+        kentat.add("volume");
+        kentat.add("pages");
     }
 
-    public List<String> getKentat() {
-        return super.kentat;
+    @Override
+    public void generateId() {
+        id = "hih";
     }
 }

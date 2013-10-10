@@ -5,51 +5,36 @@
 package boileri.viitehallintajarjestelma.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Viite {
+public abstract class Viite {
 
     protected String id;
     protected String tyyppi;
     protected final List<String> kentat;
     protected List<String> sisalto;
+    IDGenerator gen;
 
     public Viite() {
         kentat = new ArrayList<String>();
+        sisalto = new ArrayList<String>();
     }
 
-    public static List<String> getPakollisetKentat(String tyyppi) {
-        if (tyyppi.equals("inproceedings")) {
-            return new InProceedingsViite(null).getKentat();
-        }
-        if (tyyppi.equals("article")) {
-            return new ArticleViite(null).getKentat();
-        }
-        if (tyyppi.equals("book")) {
-            return new BookViite(null).getKentat();
-        }
-        return null;
-    }
+    public static Viite luoViite(String tyyppi) {
 
-    public static Viite luoViite(List<String> pakolliset, String tyyppi) {
-
-        for (String string : pakolliset) {
-            if (string.equals("")) {
-                return null;
-            }
-        }
         if (tyyppi.equals("inproceedings")) {
-            Viite viite = new InProceedingsViite(pakolliset);
+            Viite viite = new InProceedingsViite();
             viite.generateId();
             return viite;
         }
         if (tyyppi.equals("article")) {
-            Viite viite = new ArticleViite(pakolliset);
+            Viite viite = new ArticleViite();
             viite.generateId();
             return viite;
         }
         if (tyyppi.equals("book")) {
-            Viite viite = new BookViite(pakolliset);
+            Viite viite = new BookViite();
             viite.generateId();
             return viite;
         }
@@ -59,13 +44,11 @@ public class Viite {
     @Override
     public String toString() {
         String ret = "";
-        try {
-            for (int i = 0; i < kentat.size(); i++) {
-                ret += kentat.get(i) + ": " + sisalto.get(i) + "\n";
-            }
-        } catch (IndexOutOfBoundsException e) {
-            return "IndexOutOfBoundsException";
+
+        for (int i = 0; i < kentat.size(); i++) {
+            ret += kentat.get(i) + ": " + sisalto.get(i) + "\n";
         }
+
         return ret;
     }
 
@@ -81,16 +64,28 @@ public class Viite {
     // ottaa viitteen sisallon 3 ensimmaisen indeksin ensimmaiset merkit
     // ja neljannen indeksin kaksi ensimmaista merkkia ja runttaa ne yhteen
     // asettaa id:si "NULL", jos jokin merkkijonoista liian lyhyt
-    public void generateId() {
-        try {
-            this.id = sisalto.get(0).substring(0, 1) + sisalto.get(1).substring(0, 1)
-                    + sisalto.get(2).substring(0, 1) + sisalto.get(3).substring(0, 2);
-        } catch (StringIndexOutOfBoundsException e) {
-            this.id = "NULL";
-        }
+    public abstract void generateId();
+     
+    
+
+    public void setId(String newId) {
+        this.id = newId;
+    }
+
+    public void setSisalto(List<String> l) {
+        sisalto.clear();
+        sisalto.addAll(l);
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getTyyppi() {
+        return tyyppi;
+    }
+
+    public final List<String> getKentat() {
+        return kentat;
     }
 }

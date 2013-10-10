@@ -4,30 +4,24 @@
  */
 package boileri.viitehallintajarjestelma.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Outt
  */
+public class InProceedingsViite extends Viite {
 
-public class InProceedingsViite extends Viite{
-
-
-    public InProceedingsViite(List<String> sisalto) {
+    public InProceedingsViite() {
         super.tyyppi = "inproceedings";
-        
-        //id tulis antaa konstruktorissa
 
-        super.kentat.add("author");
-        super.kentat.add("title");
-        super.kentat.add("booktitle");
-        super.kentat.add("year");
-        this.sisalto = sisalto; 
+        kentat.add("author");
+        kentat.add("title");
+        kentat.add("booktitle");
+        kentat.add("year");
     }
-    
-    public List<String> getKentat() {
-        return super.kentat;
+
+    @Override
+    public void generateId() {
+         id = "huh";
     }
-}
+
+  }
