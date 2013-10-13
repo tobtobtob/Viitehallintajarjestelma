@@ -11,4 +11,4 @@ product backlog: https://docs.google.com/spreadsheet/ccc?key=0AmDentlwxFXvdHgtQk
 
 sprint backlogs: https://docs.google.com/spreadsheet/ccc?key=0AmDentlwxFXvdDdaSGk1RzVDdldTOUk3VnpxMFl6WWc&usp=sharing
 
-raportti: coming soon!!!!! (!)
+raportti: https://docs.google.com/document/d/1kGtIXyju52qKWE7zbQmBn2RGemCg0pmvDiBj6f1oj9s/edit?usp=sharing
